@@ -43,23 +43,23 @@ class NewUserForm extends React.Component {
         return (
             <div id="painScale">
                 <div onClick={() => this.savePainLevel(0)}>
-                    <i class="far fa-lg fa-meh"></i>
+                    <i className="far fa-lg fa-meh"></i>
                     <span>1. "Not sure"</span>
                 </div>
                 <div onClick={() => this.savePainLevel(1)}>
-                    <i class="far fa-lg fa-grimace"></i>
+                    <i className="far fa-lg fa-grimace"></i>
                     <span>2. "Uncomfortable"</span>
                 </div>
                 <div onClick={() => this.savePainLevel(2)}>
-                    <i class="far fa-lg fa-frown"></i>
+                    <i className="far fa-lg fa-frown"></i>
                     <span>3. "Rather concerning"</span>
                 </div>
                 <div onClick={() => this.savePainLevel(3)}>
-                    <i class="far fa-lg fa-sad-tear"></i>
+                    <i className="far fa-lg fa-sad-tear"></i>
                     <span>4. "Severe"</span>
                 </div>
                 <div onClick={() => this.savePainLevel(4)}>
-                    <i class="far fa-lg fa-sad-cry"></i>
+                    <i className="far fa-lg fa-sad-cry"></i>
                     <span>5. "OMG HAALP"</span>
                 </div>
             </div>
@@ -82,14 +82,14 @@ class NewUserForm extends React.Component {
         if (!this.props.userName) {
             // Get username.
             return (
-                <div class="custom-container container">
-                    <div class="card">
+                <div className="custom-container container">
+                    <div className="card">
                         <div className="card-body">
                             <h5>Let's start with your name.</h5>
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Name" id="name" />
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary" type="button"
+                            <div className="input-group mb-3">
+                                <input type="text" className="form-control" placeholder="Name" id="name" />
+                                <div className="input-group-append">
+                                    <button className="btn btn-outline-secondary" type="button"
                                         onClick={() => this.saveUserName()}>
                                         Button
                                     </button>
@@ -104,11 +104,11 @@ class NewUserForm extends React.Component {
         if (!this.props.userIllness) {
             // Select illness.
             return (
-                <div class="custom-container container">
-                    <div class="card">
+                <div className="custom-container container">
+                    <div className="card">
                         <div className="card-body">
                             <h4>What's your illness, {this.props.userName}?</h4>
-                            <table class="table table-striped">
+                            <table className="table table-striped">
                                 <tbody>
                                     {this.renderIllnessList()}
                                 </tbody>
@@ -122,10 +122,10 @@ class NewUserForm extends React.Component {
         if (!this.props.userPainLevel) {
             // Select pain level.
             return (
-                <div class="custom-container container">
-                    <div class="card">
+                <div className="custom-container container">
+                    <div className="card">
                         <div className="card-body">
-                            <p class="lead">You are suffering from <em>{this.props.userIllness.illness.name}</em>.</p>
+                            <p className="lead">You are suffering from <em>{this.props.userIllness.illness.name}</em>.</p>
                             <h4>How much pain are you in?</h4>
                             {this.renderPainScale()}
                         </div>

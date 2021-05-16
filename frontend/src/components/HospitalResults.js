@@ -35,8 +35,8 @@ const HospitalResults = props => {
         return illness.name;
     }
     return (
-        <div class="custom-container container">
-            <div class="card">
+        <div className="custom-container container">
+            <div className="card">
                 <div className="card-body">
                     <h3>Suggested Hospitals for you, {props.userData.name}</h3>
                     <p>... for you illness <em>{getUserIllness()}</em></p>

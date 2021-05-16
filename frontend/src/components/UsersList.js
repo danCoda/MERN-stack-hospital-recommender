@@ -25,12 +25,12 @@ class UsersList extends React.Component {
     render() {
         console.error(this.props);
         return (
-            <div class="custom-container container" id="previous-users">
-                <div class="card">
+            <div className="custom-container container" id="previous-users">
+                <div className="card">
                     <div className="card-body">
                         <h5>Previous users:</h5>
                         
-                        <table class="table table-striped">
+                        <table className="table table-striped">
                             <tbody>
                                 {this.renderList()}
                             </tbody>
