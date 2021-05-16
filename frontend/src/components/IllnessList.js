@@ -9,15 +9,18 @@ class IllnessList extends React.Component {
     }
 
     renderList() {
-        if (!this.props.illnesses) return;
+        if (!this.props.illnesses?._embedded) return;
+        console.log(this.props);
 
-        const illnesses = this.props.illnesses._embedded.illnesses;
-        console.log("Ill: ", illnesses);
-        return illnesses.map(illness => {
+        const illnessList = this.props.illnesses._embedded.illnesses;
+        console.log("illnessList: ", illnessList);
+
+        return illnessList.map(data => {
             return (
-                <div key={illness.id}>
-                    <h3>{illness.illness.name}</h3>
-                    <a href={illness._links.illness}>Info</a>
+                <div key={data.illness.id}>
+                    ADD NEW USER
+                    <h3>{data.illness.name}</h3>
+                    <a href={data._links.illnesses}>Info</a>
                 </div>
             );
         });
@@ -37,7 +40,6 @@ class IllnessList extends React.Component {
 };
 
 const mapStateToProps = state => {
-    console.log("State: ", state);
 
     return {
         illnesses: state.illnesses
