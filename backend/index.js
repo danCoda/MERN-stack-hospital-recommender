@@ -2,40 +2,35 @@ const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const {
-    v4: getId
-} = require('uuid');
+const { v4: getId } = require('uuid');
+const mongoose = require('mongoose');
+
+const User = require('./models/user'); // User model for Mongoose.
 
 const PORT_NUMBER = 9000;
 const API_DOMAIN = "http://dmmw-api.australiaeast.cloudapp.azure.com:8080";
 const app = express();
 
 // Be able to parse req.body:
-app.use(express.urlencoded({
-    extended: true
-}));
+app.use(express.urlencoded({ extended: true }));
 app.use(cors()); // Allow us to speak with our locally-run frontend.
 app.use(bodyParser.json()); // Allow us to process incoming request bodies.
 
-let users = [{
-        id: 1,
-        name: "Tod Tester",
-        painLevel: 3,
-        diagnosisId: 1,
-    },
-    {
-        id: getId(),
-        name: "Dan",
-        painLevel: 4,
-        diagnosisId: 2,
-    },
-    {
-        id: getId(),
-        name: "Peter",
-        painLevel: 5,
-        diagnosisId: 2,
-    }
-]
+
+const connectToDatabase = () => {
+    mongoose.connect('mongodb://127.0.0.1:27017/zombieVictims', {
+        useNewUrlParser: true, 
+        useUnifiedTopology: true
+    })
+        .then(() => {
+            console.log("Connected to Database.");
+        })
+        .catch(e => {
+            console.log("Connection FAILED to Database: ", e);
+        });
+}
+
+connectToDatabase();
 
 const getExternalJSON = url => {
     try {
@@ -48,13 +43,9 @@ const getExternalJSON = url => {
     }
 }
 
-app.get('/test', (req, res) => {
-    console.log("Received /test!");
-    res.send("Hello from /test");
-});
-
 // Get all users.
-app.get('/users', (req, res) => {
+app.get('/users', async (req, res) => {
+    const users = await User.find({ })
     res.send(users);
 });
 
@@ -72,7 +63,8 @@ app.post('/users', (req, res) => {
         diagnosisId
     }
     users.push(newUser);
-    console.log("New user", newUser, req.body);
+    console.log("New user added: ", newUser.name);
+    console.log("Users: ", users);
     res.send(newUser);
 });
 

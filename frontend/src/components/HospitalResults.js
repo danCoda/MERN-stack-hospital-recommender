@@ -1,7 +1,4 @@
 import React from 'react';
-import { render } from 'react-dom';
-import { connect } from 'react-redux';
-import { addUserData, saveUserName, fetchIllnesses, saveUserIllness, saveUserPainLevel } from '../actions';
 
 const HospitalResults = props => {
     const getHospitalWaitTime = (painLevel, hospital) => {
@@ -19,8 +16,6 @@ const HospitalResults = props => {
         });    
     };
     
-    console.log("Props @ hospitals: ", props);
-
     const userPainLevel = props.userData.painLevel;
     sortHospitalByWaitingTime();
 
