@@ -2,35 +2,31 @@ const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const { v4: getId } = require('uuid');
 const mongoose = require('mongoose');
 
 const User = require('./models/user'); // User model for Mongoose.
 
 const PORT_NUMBER = 9000;
+const DATABASE_NAME = 'zombieVictims';
 const API_DOMAIN = "http://dmmw-api.australiaeast.cloudapp.azure.com:8080";
 const app = express();
 
-// Be able to parse req.body:
-app.use(express.urlencoded({ extended: true }));
-app.use(cors()); // Allow us to speak with our locally-run frontend.
+app.use(express.urlencoded({ extended: true })); // Be able to parse req.body.
+app.use(cors()); // Allow us to communicate with our locally-run frontend.
 app.use(bodyParser.json()); // Allow us to process incoming request bodies.
 
-
 const connectToDatabase = () => {
-    mongoose.connect('mongodb://127.0.0.1:27017/zombieVictims', {
+    mongoose.connect(`mongodb://127.0.0.1:27017/${DATABASE_NAME}`, {
         useNewUrlParser: true, 
         useUnifiedTopology: true
     })
         .then(() => {
-            console.log("Connected to Database.");
+            console.log(`Connected to Database ${DATABASE_NAME}!`);
         })
         .catch(e => {
             console.log("Connection FAILED to Database: ", e);
         });
 }
-
-connectToDatabase();
 
 const getExternalJSON = url => {
     try {
@@ -43,29 +39,47 @@ const getExternalJSON = url => {
     }
 }
 
+connectToDatabase();
+
+//========================
+// Routes:
+//========================
+
+app.listen(PORT_NUMBER, () => {
+    console.log(`Backend running on port ${PORT_NUMBER}!`);
+});
+
 // Get all users.
 app.get('/users', async (req, res) => {
-    const users = await User.find({ })
+    const users = await User.find({});
+    console.log("users: ", users);
     res.send(users);
 });
 
+// Get a user.
+app.get('/users/:id', async (req, res) => {
+    const { id } = req.params;
+    const user = await User.findById(id);
+    console.log(user);
+    res.send(user);
+});
+
 // Add new user.
-app.post('/users', (req, res) => {
-    const {
+app.post('/users', async (req, res) => {
+    const newUser = new User({
         name,
         painLevel,
         diagnosisId
-    } = req.body;
-    const newUser = {
-        id: getId(),
-        name,
-        painLevel,
-        diagnosisId
-    }
-    users.push(newUser);
-    console.log("New user added: ", newUser.name);
-    console.log("Users: ", users);
-    res.send(newUser);
+    } = req.body);
+
+    await newUser.save();
+    res.send(req.body);
+});
+
+// Delete user. 
+app.delete('/users/:id', async (req, res) => {
+    const deletedProduct = await User.findByIdAndDelete(req.params.id);
+    res.send(deletedProduct);
 });
 
 // Get a list of illnesses. 
@@ -82,8 +96,4 @@ app.get('/hospitals', async (req, res) => {
     const hospitals = await getExternalJSON(url);
 
     res.send(hospitals.data);
-});
-
-app.listen(PORT_NUMBER, () => {
-    console.log(`Backend running on port ${PORT_NUMBER}!`);
 });
