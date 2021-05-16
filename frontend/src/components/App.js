@@ -2,11 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import NewUserForm from './NewUserForm';
+import HospitalResults from './HospitalResults';
+import { fetchHospitals } from '../actions';
 
 class App extends React.Component {
-    /* componentDidMount() {
-        this.props.fetchIllnesses();
-    } */
+    componentDidMount() {
+        this.props.fetchHospitals();
+    }
 
     render() {
         console.log("App rerendered.");
@@ -21,7 +23,7 @@ class App extends React.Component {
 
         return (
             <div>
-                My app
+                <HospitalResults userData={this.props.userData} illnesses={this.props.illnesses} hospitals={this.props.hospitals}/>
             </div>
         );    
     }
@@ -31,10 +33,12 @@ class App extends React.Component {
 const mapStateToProps = state => {
     console.log("Staaate: ", state);
     return {
+        fetchHospitals,
         illnesses: state.illnesses,
+        hospitals: state.hospitals,
         user: state.user,
         userData: state.userData
     };
 };
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, { fetchHospitals })(App);

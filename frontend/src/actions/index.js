@@ -4,7 +4,15 @@ export const fetchIllnesses = () => async (dispatch, getState) => {
     const response = await backendPlaceholder.get('/illnesses');
     dispatch({
         type: 'FETCH_ILLNESSES',
-        payload: response.data
+        payload: response.data._embedded.illnesses
+    });
+};
+
+export const fetchHospitals = () => async (dispatch, getState) => {
+    const response = await backendPlaceholder.get('/hospitals');
+    dispatch({
+        type: 'FETCH_HOSPITALS',
+        payload: response.data._embedded.hospitals
     });
 };
 

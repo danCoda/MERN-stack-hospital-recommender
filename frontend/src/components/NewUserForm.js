@@ -1,5 +1,4 @@
 import React from 'react';
-import { render } from 'react-dom';
 import { connect } from 'react-redux';
 import { addUserData, saveUserName, fetchIllnesses, saveUserIllness, saveUserPainLevel } from '../actions';
 
@@ -16,11 +15,11 @@ class NewUserForm extends React.Component {
     };
 
     renderIllnessList() {
-        if (!this.props.illnesses?._embedded) return;
+/*         if (!this.props.illnesses?._embedded) return;
 
         const illnessList = this.props.illnesses._embedded.illnesses;
-
-        return illnessList.map(data => {
+ */
+        return this.props.illnesses.map(data => {
             return (
                 <div key={data.illness.id}>
                     <h3>{data.illness.name}</h3>

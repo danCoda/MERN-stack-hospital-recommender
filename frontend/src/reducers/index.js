@@ -7,6 +7,13 @@ const illnessReducer = (state = [], action) => {
     return state;
 }
 
+const hospitalsReducer = (state = [], action) => {
+    if (action.type === "FETCH_HOSPITALS") {
+        return action.payload;
+    }
+    return state;
+}
+
 const userIllnessReducer = (state = 0, action) => {
     if (action.type === "USER_ILLNESS") {
         return action.payload;
@@ -18,7 +25,6 @@ const userNameReducer = (state = null, action) => {
     if (action.type === "NEW_USER_NAME") {
         return action.payload;
     }
-    console.log("Exiswting");
     return state;
 }
 
@@ -38,6 +44,7 @@ const newUserReducer = (state = null, action) => {
 
 export default combineReducers({
     illnesses: illnessReducer,
+    hospitals: hospitalsReducer,
     userName: userNameReducer,
     userIllness: userIllnessReducer,
     userPainLevel: userPainLevelReducer,
