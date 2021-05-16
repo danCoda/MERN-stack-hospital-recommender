@@ -8,15 +8,37 @@ class IllnessList extends React.Component {
         this.props.fetchIllnesses();
     }
 
+    renderList() {
+        if (!this.props.illnesses) return;
+
+        const illnesses = this.props.illnesses._embedded.illnesses;
+        console.log("Ill: ", illnesses);
+        return illnesses.map(illness => {
+            return (
+                <div key={illness.id}>
+                    <h3>{illness.illness.name}</h3>
+                    <a href={illness._links.illness}>Info</a>
+                </div>
+            );
+        });
+    };
+
     render() {
         console.log(this.props.illnesses);
         return (
-            <h1>Illnesses</h1>
+            <div>
+                <h1>Illnesses</h1>
+                <div>
+                    {this.renderList()}
+                </div>
+            </div>
         );
     };
 };
 
 const mapStateToProps = state => {
+    console.log("State: ", state);
+
     return {
         illnesses: state.illnesses
     };
