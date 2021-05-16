@@ -14,10 +14,6 @@ class NewUserForm extends React.Component {
     };
 
     renderIllnessList() {
-/*         if (!this.props.illnesses?._embedded) return;
-
-        const illnessList = this.props.illnesses._embedded.illnesses;
- */
         return this.props.illnesses.map(data => {
             return (
                 <div key={data.illness.id}>
@@ -48,13 +44,14 @@ class NewUserForm extends React.Component {
         console.warn("this.props: ", this.props);
 
         if (this.props.userName && this.props.userIllness && this.props.userPainLevel) {
+            // We have all the needed user data. Save to database to trigger new view.
             this.props.addUserData({
                 name: this.props.userName,
                 diagnosisId: this.props.userIllness.illness.id,
                 painLevel: this.props.userPainLevel
             });
-            return <div>Heh</div>;
-        }
+            return <div>Loading...</div>;
+        };
         
         if (!this.props.userName) {
             // Get username.
@@ -65,19 +62,20 @@ class NewUserForm extends React.Component {
                     <button onClick={() => this.saveUserName()}>Submit</button>
                 </div>
             );  
-        } 
+        };
         
         if (!this.props.userIllness) {
-            // Get illness.
+            // Select illness.
             return (
                 <div>
                     <h3>What's your illness, {this.props.userName}</h3>
                     {this.renderIllnessList()}
                 </div>
             );
-        }
+        };
 
         if (!this.props.userPainLevel) {
+            // Select pain level.
             return (
                 <div>
                     <h3>You are suffering from {this.props.userIllness.illness.name}</h3>
@@ -85,16 +83,13 @@ class NewUserForm extends React.Component {
                     {this.renderPainScale()}
                 </div>
             );
-        }
+        };
 
-        return(
-            <div>Well then, yo...</div>
-        )
+        return <div>Shouldn't get here...</div>;
     }
 }
 
 const mapStateToProps = state => {
-    console.log("State: ", state);
     return {
         fetchIllnesses,
         saveUserName,

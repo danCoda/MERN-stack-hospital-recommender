@@ -24,16 +24,20 @@ const HospitalResults = props => {
             return (
                 <div key={h.id}>
                     <h3>{h.name}</h3>
-                    <div>Waiting time: {getHospitalWaitTime(userPainLevel, h)}</div>
+                    <div>Waiting time: {getHospitalWaitTime(userPainLevel, h)} minutes</div>
                 </div>
             );
         });
     };
 
+    const getUserIllness = () => {
+        const illness = props.illnesses.find(ill => ill.illness.id === props.userData.diagnosisId).illness;
+        return illness.name;
+    }
     return (
         <div>
-            <h1>Available Hospitals</h1>
-            <p></p>
+            <h3>Available Hospitals </h3>
+            <p>Illness: {getUserIllness()}</p>
             {renderHospitalList()}
         </div>
     );

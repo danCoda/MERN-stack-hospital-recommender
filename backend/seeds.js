@@ -39,7 +39,7 @@ let users = [{
     },
     {
         name: "Peter",
-        painLevel: 5,
+        painLevel: 1,
         diagnosisId: 2,
     }
 ];

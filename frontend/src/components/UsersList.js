@@ -8,7 +8,7 @@ class UsersList extends React.Component {
         return this.props.users.map(user => {
             return (
                 <div key={user._id}>
-                    <span>{user.name}</span>
+                    <span onClick={() => this.props.setUserData(user)}>{user.name}</span>
                     <button 
                         onClick={() => this.props.deleteUser(user._id)}
                     >
@@ -23,7 +23,7 @@ class UsersList extends React.Component {
         console.error(this.props);
         return (
             <div>
-                <h1>Users:</h1>
+                <h3>Saved users:</h3>
                 {this.renderList()}
             </div>
         );

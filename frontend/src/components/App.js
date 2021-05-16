@@ -16,19 +16,19 @@ class App extends React.Component {
     render() {
         console.log("App rerendered.");
 
-        if (this.props.users.length) {
-            return (
-                <UsersList />
-            );
-        };
-
         if (!this.props.userData) {
-            return (
-                <div>
-                    <h1>New Patient Form</h1>
-                    <NewUserForm />
-                </div>
-            )
+            if (this.props.users.length) {
+                return (
+                    <UsersList />
+                );
+            } else {
+                return (
+                    <div>
+                        <h1>New Patient Form</h1>
+                        <NewUserForm />
+                    </div>
+                );
+            }
         }
 
         return (
