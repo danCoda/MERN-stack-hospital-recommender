@@ -11,9 +11,11 @@ const store = createStore(reducers, applyMiddleware(thunk));
 
 ReactDOM.render(
     <Provider store={ store }>
-        <h1>Hospital Finder</h1>
-        <h3>...For the lowest waiting time!</h3>
-        <App />
+        <div className="container">
+            <h1 class="display-1 text-center">Hospital Finder</h1>
+            <h3 class="lead text-center bg-light">...For the lowest waiting time!</h3>
+            <App />
+        </div>
     </Provider>,
     document.querySelector('#root')
 );

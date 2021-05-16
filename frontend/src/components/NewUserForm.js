@@ -8,18 +8,27 @@ class NewUserForm extends React.Component {
     }
 
     saveUserName () {
-        const userName = document.querySelector('#name').value;
+        let userName = document.querySelector('#name').value;
         if (!userName) return;
+        // Capitalise first letter.
+        userName = userName.charAt(0).toUpperCase() + userName.slice(1)
         this.props.saveUserName(userName);
     };
 
     renderIllnessList() {
         return this.props.illnesses.map(data => {
             return (
-                <div key={data.illness.id}>
-                    <h3>{data.illness.name}</h3>
-                    <button onClick={() => this.props.saveUserIllness(data)}>Select</button>
-                </div>
+                <tr key={data.illness.id}>
+                    <td>{data.illness.name}</td>
+                    <td>
+                        <button 
+                            onClick={() => this.props.saveUserIllness(data)}
+                            className="btn btn-primary btn-sm"
+                        >
+                            Select
+                        </button>
+                    </td>
+                </tr>
             );
         });
     };
@@ -57,9 +66,16 @@ class NewUserForm extends React.Component {
             // Get username.
             return (
                 <div>
-                    <label htmlFor="name">Name</label>
-                    <input type="text" id="name"></input>
-                    <button onClick={() => this.saveUserName()}>Submit</button>
+                    <h4>Let's start with your name.</h4>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Name" id="name" />
+                        <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button"
+                                onClick={() => this.saveUserName()}>
+                                Button
+                            </button>
+                        </div>
+                    </div>
                 </div>
             );  
         };
@@ -68,8 +84,12 @@ class NewUserForm extends React.Component {
             // Select illness.
             return (
                 <div>
-                    <h3>What's your illness, {this.props.userName}</h3>
-                    {this.renderIllnessList()}
+                    <h4>What's your illness, {this.props.userName}?</h4>
+                    <table class="table table-striped">
+                        <tbody>
+                            {this.renderIllnessList()}
+                        </tbody>
+                    </table>
                 </div>
             );
         };
@@ -78,7 +98,7 @@ class NewUserForm extends React.Component {
             // Select pain level.
             return (
                 <div>
-                    <h3>You are suffering from {this.props.userIllness.illness.name}</h3>
+                    <h4>You are suffering from {this.props.userIllness.illness.name}</h4>
                     <p>How much pain are you in?</p>
                     {this.renderPainScale()}
                 </div>

@@ -20,14 +20,14 @@ class App extends React.Component {
             if (this.props.users.length) {
                 return (
                     <div>
-                        <UsersList />
                         <NewUserForm />
+                        <UsersList />
                     </div>
                 );
             } else {
                 return (
                     <div>
-                        <h1>New Patient Form</h1>
+                        <h4>New Patient Form</h4>
                         <NewUserForm />
                     </div>
                 );
