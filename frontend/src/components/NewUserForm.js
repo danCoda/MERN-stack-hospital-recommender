@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { addUserData, saveUserName, fetchIllnesses, saveUserIllness, saveUserPainLevel } from '../actions';
 
-
 class NewUserForm extends React.Component {
     componentDidMount() {
         this.props.fetchIllnesses();

@@ -79,7 +79,9 @@ app.post('/users', async (req, res) => {
 // Delete user. 
 app.delete('/users/:id', async (req, res) => {
     const deletedProduct = await User.findByIdAndDelete(req.params.id);
-    res.send(deletedProduct);
+    // Return available users.
+    const users = await User.find({});
+    res.send(users);
 });
 
 // Get a list of illnesses. 

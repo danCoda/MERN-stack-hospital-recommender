@@ -16,10 +16,33 @@ export const fetchHospitals = () => async (dispatch, getState) => {
     });
 };
 
+export const fetchUsers = () => async (dispatch, getState) => {
+    const response = await backendPlaceholder.get('/users');
+    dispatch({
+        type: 'FETCH_USERS',
+        payload: response.data
+    });
+};
+
 export const addUserData = newUser => async dispatch => {
     const response = await backendPlaceholder.post('/users', newUser);
     dispatch({
         type: 'NEW_USER_DATA',
+        payload: response.data
+    });
+};
+
+export const setUserData = user => async dispatch => {
+    dispatch({
+        type: 'SET_USER_DATA',
+        payload: user
+    });
+};
+
+export const deleteUser = id => async dispatch => {
+    const response = await backendPlaceholder.delete(`/users/${id}`);
+    dispatch({
+        type: 'DELETE_USER',
         payload: response.data
     });
 };
