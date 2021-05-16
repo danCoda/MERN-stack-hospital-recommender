@@ -1,8 +1,9 @@
 import React from 'react';
+import IllnessList from './IllnessList';
 
 const App = () => {
     return (
-        <div>App!</div>
+        <IllnessList />
     );
 };
 
