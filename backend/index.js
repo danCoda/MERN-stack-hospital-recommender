@@ -1,5 +1,6 @@
 const express = require('express');
 const axios = require('axios');
+const cors = require('cors');
 const {
     v4: getId
 } = require('uuid');
@@ -11,6 +12,7 @@ const app = express();
 app.use(express.urlencoded({
     extended: true
 }));
+app.use(cors()); // Allow us to speak with our locally-run frontend.
 
 let users = [{
         id: 1,
