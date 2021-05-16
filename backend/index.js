@@ -1,6 +1,7 @@
 const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
+const bodyParser = require('body-parser');
 const {
     v4: getId
 } = require('uuid');
@@ -8,11 +9,13 @@ const {
 const PORT_NUMBER = 9000;
 const API_DOMAIN = "http://dmmw-api.australiaeast.cloudapp.azure.com:8080";
 const app = express();
+
 // Be able to parse req.body:
 app.use(express.urlencoded({
     extended: true
 }));
 app.use(cors()); // Allow us to speak with our locally-run frontend.
+app.use(bodyParser.json()); // Allow us to process incoming request bodies.
 
 let users = [{
         id: 1,
@@ -69,8 +72,8 @@ app.post('/users', (req, res) => {
         diagnosisId
     }
     users.push(newUser);
-    // Redirect to list of users.
-    res.redirect('/users');
+    console.log("New user", newUser, req.body);
+    res.send(newUser);
 });
 
 // Get a list of illnesses. 

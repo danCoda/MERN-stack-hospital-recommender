@@ -1,9 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchIllnesses } from '../actions';
 
 import NewUserForm from './NewUserForm';
-import IllnessList from './IllnessList';
 
 class App extends React.Component {
     /* componentDidMount() {
@@ -12,7 +10,7 @@ class App extends React.Component {
 
     render() {
         console.log("App rerendered.");
-        if (!this.props.user) {
+        if (!this.props.userData) {
             return (
                 <div>
                     <h1>New Patient Form</h1>
@@ -31,9 +29,11 @@ class App extends React.Component {
 
 
 const mapStateToProps = state => {
+    console.log("Staaate: ", state);
     return {
         illnesses: state.illnesses,
-        user: state.user
+        user: state.user,
+        userData: state.userData
     };
 };
 
