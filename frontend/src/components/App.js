@@ -19,7 +19,10 @@ class App extends React.Component {
         if (!this.props.userData) {
             if (this.props.users.length) {
                 return (
-                    <UsersList />
+                    <div>
+                        <UsersList />
+                        <NewUserForm />
+                    </div>
                 );
             } else {
                 return (

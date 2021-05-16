@@ -36,9 +36,10 @@ const HospitalResults = props => {
     }
     return (
         <div>
-            <h3>Available Hospitals </h3>
+            <h3>Available Hospitals for {props.userData.name}</h3>
             <p>Illness: {getUserIllness()}</p>
             {renderHospitalList()}
+            <button onClick={() => window.location.reload()}>Home</button>
         </div>
     );
 };
