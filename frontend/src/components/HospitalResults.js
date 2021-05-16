@@ -53,7 +53,9 @@ const HospitalResults = props => {
                     </table>
                 </div>    
             </div>
-            <button onClick={() => window.location.reload()}>Home</button>                    
+            <div class="alert alert-warning" role="alert">
+                Thank you. Take me back to the <a href="" className="alert-link" onClick={() => window.location.reload()}>homepage</a>.
+            </div>
         </div>
     );
 };

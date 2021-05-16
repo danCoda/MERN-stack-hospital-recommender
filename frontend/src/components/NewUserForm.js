@@ -85,7 +85,8 @@ class NewUserForm extends React.Component {
                 <div className="custom-container container">
                     <div className="card">
                         <div className="card-body">
-                            <h5>Let's start with your name.</h5>
+                            <h5>Let's start with your name</h5>
+                            <p>Step 1/3</p>
                             <div className="input-group mb-3">
                                 <input type="text" className="form-control" placeholder="Name" id="name" />
                                 <div className="input-group-append">
@@ -108,6 +109,7 @@ class NewUserForm extends React.Component {
                     <div className="card">
                         <div className="card-body">
                             <h4>What's your illness, {this.props.userName}?</h4>
+                            <p>Step 2/3</p>
                             <table className="table table-striped">
                                 <tbody>
                                     {this.renderIllnessList()}
@@ -127,6 +129,7 @@ class NewUserForm extends React.Component {
                         <div className="card-body">
                             <p className="lead">You are suffering from <em>{this.props.userIllness.illness.name}</em>.</p>
                             <h4>How much pain are you in?</h4>
+                            <p>Step 3/3</p>
                             {this.renderPainScale()}
                         </div>
                     </div>
