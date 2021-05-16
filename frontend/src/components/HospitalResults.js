@@ -53,7 +53,7 @@ const HospitalResults = props => {
                     </table>
                 </div>    
             </div>
-            <div class="alert alert-warning" role="alert">
+            <div className="alert alert-warning" role="alert">
                 Thank you. Take me back to the <a href="" className="alert-link" onClick={() => window.location.reload()}>homepage</a>.
             </div>
         </div>

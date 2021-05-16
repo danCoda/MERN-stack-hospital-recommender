@@ -8,6 +8,7 @@ class NewUserForm extends React.Component {
     }
 
     saveUserName () {
+        // Saves to the database.
         let userName = document.querySelector('#name').value;
         if (!userName) return;
         // Capitalise first letter.
@@ -67,8 +68,6 @@ class NewUserForm extends React.Component {
     }
 
     render() {
-        console.warn("this.props: ", this.props);
-
         if (this.props.userName && this.props.userIllness && this.props.userPainLevel !== null) {
             // We have all the needed user data. Save to database to trigger new view.
             this.props.addUserData({

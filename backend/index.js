@@ -52,7 +52,6 @@ app.listen(PORT_NUMBER, () => {
 // Get all users.
 app.get('/users', async (req, res) => {
     const users = await User.find({});
-    console.log("users: ", users);
     res.send(users);
 });
 
@@ -60,7 +59,6 @@ app.get('/users', async (req, res) => {
 app.get('/users/:id', async (req, res) => {
     const { id } = req.params;
     const user = await User.findById(id);
-    console.log(user);
     res.send(user);
 });
 
@@ -88,7 +86,6 @@ app.delete('/users/:id', async (req, res) => {
 app.get('/illnesses', async (req, res) => {
     const url = `${API_DOMAIN}/illnesses`;
     const illnesses = await getExternalJSON(url);
-    console.log("Illesses requested.");
     res.send(illnesses.data);
 });
 

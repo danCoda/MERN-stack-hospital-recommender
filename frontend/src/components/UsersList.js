@@ -23,7 +23,6 @@ class UsersList extends React.Component {
     };
 
     render() {
-        console.error(this.props);
         return (
             <div className="custom-container container" id="previous-users">
                 <div className="card">
