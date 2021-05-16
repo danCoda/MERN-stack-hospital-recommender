@@ -76,6 +76,8 @@ app.get('/illnesses', async (req, res) => {
     const url = `${API_DOMAIN}/illnesses`;
     const illnesses = await getExternalJSON(url);
 
+    console.log("Illesses: ");
+    console.log(illnesses.data);
     res.send(illnesses.data);
 });
 
