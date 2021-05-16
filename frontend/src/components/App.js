@@ -14,8 +14,6 @@ class App extends React.Component {
     }
 
     render() {
-        console.log("App rerendered.");
-
         if (!this.props.userData) {
             if (this.props.users.length) {
                 return (
@@ -44,7 +42,6 @@ class App extends React.Component {
 
 
 const mapStateToProps = state => {
-    console.log("Staaate: ", state);
     return {
         fetchHospitals,
         fetchUsers,

@@ -7,24 +7,36 @@ class UsersList extends React.Component {
     renderList() {
         return this.props.users.map(user => {
             return (
-                <div key={user._id}>
-                    <span onClick={() => this.props.setUserData(user)}>{user.name}</span>
-                    <button 
-                        onClick={() => this.props.deleteUser(user._id)}
-                    >
-                        Delete
-                    </button>
-                </div>
-            )
+                <tr key={user._id}>
+                    <td onClick={() => this.props.setUserData(user)}>{user.name}</td>
+                    <td className="d-flex justify-content-around">
+                        <button 
+                            onClick={() => this.props.deleteUser(user._id)}
+                            className="btn btn-danger btn-sm"
+                        >
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+            );
         });
     };
 
     render() {
         console.error(this.props);
         return (
-            <div>
-                <h3>Saved users:</h3>
-                {this.renderList()}
+            <div class="custom-container container" id="previous-users">
+                <div class="card">
+                    <div className="card-body">
+                        <h5>Previous users:</h5>
+                        
+                        <table class="table table-striped">
+                            <tbody>
+                                {this.renderList()}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         );
     }

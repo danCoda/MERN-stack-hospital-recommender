@@ -1,0 +1,64 @@
+body {
+    background: rgb(255,255,255);
+    background: linear-gradient(180deg, rgba(255,255,255,0) 13%, rgba(157, 174, 250, 0.603) 100%);
+    height: 100vh;
+}
+
+#company-name {
+    margin-top: 100px;
+}
+
+.sub-header {
+    margin-bottom: 50px;
+}
+
+#painScale {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px 0;
+}
+
+#painScale div {
+    width: 100%;
+    transition: 250ms;
+    height: 80px;
+    display: flex;
+    justify-content: space-around;
+    padding-top: 11px;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 20px;
+    text-align: center;
+}
+
+#painScale div:hover {
+    transform: scale(1.5);
+    opacity: 0.9;
+}
+
+#painScale div:nth-of-type(1):hover {
+    background-color: #f4ca32;
+}
+
+#painScale div:nth-of-type(2):hover {
+    background-color: #e2962d;
+}
+
+#painScale div:nth-of-type(3):hover {
+    background-color: #d3692f;
+}
+
+#painScale div:nth-of-type(4):hover {
+    background-color: #ce2e29;
+    color: white;
+}
+
+#painScale div:nth-of-type(5):hover {
+    background-color: #4b0b09;
+    color: white;
+}
+
+.custom-container {
+    margin: 30px 0;
+}

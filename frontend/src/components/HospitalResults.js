@@ -22,10 +22,10 @@ const HospitalResults = props => {
     const renderHospitalList = () => {
         return props.hospitals.map(h => {
             return (
-                <div key={h.id}>
-                    <h3>{h.name}</h3>
-                    <div>Waiting time: {getHospitalWaitTime(userPainLevel, h)} minutes</div>
-                </div>
+                <tr scope="row" key={h.id}>
+                    <td>{h.name}</td>
+                    <td className="text-center">{getHospitalWaitTime(userPainLevel, h)}</td>
+                </tr>
             );
         });
     };
@@ -35,11 +35,25 @@ const HospitalResults = props => {
         return illness.name;
     }
     return (
-        <div>
-            <h3>Available Hospitals for {props.userData.name}</h3>
-            <p>Illness: {getUserIllness()}</p>
-            {renderHospitalList()}
-            <button onClick={() => window.location.reload()}>Home</button>
+        <div class="custom-container container">
+            <div class="card">
+                <div className="card-body">
+                    <h3>Suggested Hospitals for you, {props.userData.name}</h3>
+                    <p>... for you illness <em>{getUserIllness()}</em></p>
+                    <table className="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col" className="text-center align-middle">Hospital name</th>
+                                <th scope="col" className="text-center">Average wait time (minutes)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {renderHospitalList()}
+                        </tbody>
+                    </table>
+                </div>    
+            </div>
+            <button onClick={() => window.location.reload()}>Home</button>                    
         </div>
     );
 };

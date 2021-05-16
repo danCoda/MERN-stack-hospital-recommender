@@ -16,11 +16,13 @@ class NewUserForm extends React.Component {
     };
 
     renderIllnessList() {
-        return this.props.illnesses.map(data => {
+        return this.props.illnesses.map((data, i) => {
             return (
                 <tr key={data.illness.id}>
-                    <td>{data.illness.name}</td>
                     <td>
+                        {data.illness.name}
+                    </td>
+                    <td className="d-flex justify-content-around">
                         <button 
                             onClick={() => this.props.saveUserIllness(data)}
                             className="btn btn-primary btn-sm"
@@ -39,12 +41,27 @@ class NewUserForm extends React.Component {
 
     renderPainScale() {
         return (
-            <div>
-                <div onClick={() => this.savePainLevel(0)}>0 meh</div>
-                <div onClick={() => this.savePainLevel(1)}>1</div>
-                <div onClick={() => this.savePainLevel(2)}>2</div>
-                <div onClick={() => this.savePainLevel(3)}>3</div>
-                <div onClick={() => this.savePainLevel(4)}>4 owwww</div>
+            <div id="painScale">
+                <div onClick={() => this.savePainLevel(0)}>
+                    <i class="far fa-lg fa-meh"></i>
+                    <span>1. "Not sure"</span>
+                </div>
+                <div onClick={() => this.savePainLevel(1)}>
+                    <i class="far fa-lg fa-grimace"></i>
+                    <span>2. "Uncomfortable"</span>
+                </div>
+                <div onClick={() => this.savePainLevel(2)}>
+                    <i class="far fa-lg fa-frown"></i>
+                    <span>3. "Rather concerning"</span>
+                </div>
+                <div onClick={() => this.savePainLevel(3)}>
+                    <i class="far fa-lg fa-sad-tear"></i>
+                    <span>4. "Severe"</span>
+                </div>
+                <div onClick={() => this.savePainLevel(4)}>
+                    <i class="far fa-lg fa-sad-cry"></i>
+                    <span>5. "OMG HAALP"</span>
+                </div>
             </div>
         )
     }
@@ -52,7 +69,7 @@ class NewUserForm extends React.Component {
     render() {
         console.warn("this.props: ", this.props);
 
-        if (this.props.userName && this.props.userIllness && this.props.userPainLevel) {
+        if (this.props.userName && this.props.userIllness && this.props.userPainLevel !== null) {
             // We have all the needed user data. Save to database to trigger new view.
             this.props.addUserData({
                 name: this.props.userName,
@@ -65,15 +82,19 @@ class NewUserForm extends React.Component {
         if (!this.props.userName) {
             // Get username.
             return (
-                <div>
-                    <h4>Let's start with your name.</h4>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Name" id="name" />
-                        <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button"
-                                onClick={() => this.saveUserName()}>
-                                Button
-                            </button>
+                <div class="custom-container container">
+                    <div class="card">
+                        <div className="card-body">
+                            <h5>Let's start with your name.</h5>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Name" id="name" />
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="button"
+                                        onClick={() => this.saveUserName()}>
+                                        Button
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -83,13 +104,17 @@ class NewUserForm extends React.Component {
         if (!this.props.userIllness) {
             // Select illness.
             return (
-                <div>
-                    <h4>What's your illness, {this.props.userName}?</h4>
-                    <table class="table table-striped">
-                        <tbody>
-                            {this.renderIllnessList()}
-                        </tbody>
-                    </table>
+                <div class="custom-container container">
+                    <div class="card">
+                        <div className="card-body">
+                            <h4>What's your illness, {this.props.userName}?</h4>
+                            <table class="table table-striped">
+                                <tbody>
+                                    {this.renderIllnessList()}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             );
         };
@@ -97,10 +122,14 @@ class NewUserForm extends React.Component {
         if (!this.props.userPainLevel) {
             // Select pain level.
             return (
-                <div>
-                    <h4>You are suffering from {this.props.userIllness.illness.name}</h4>
-                    <p>How much pain are you in?</p>
-                    {this.renderPainScale()}
+                <div class="custom-container container">
+                    <div class="card">
+                        <div className="card-body">
+                            <p class="lead">You are suffering from <em>{this.props.userIllness.illness.name}</em>.</p>
+                            <h4>How much pain are you in?</h4>
+                            {this.renderPainScale()}
+                        </div>
+                    </div>
                 </div>
             );
         };

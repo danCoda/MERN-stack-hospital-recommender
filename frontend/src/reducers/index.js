@@ -46,6 +46,7 @@ const userPainLevelReducer = (state = null, action) => {
 }
 
 const newUserReducer = (state = null, action) => {
+    console.log("New usaa");
     switch (action.type) {
         case "NEW_USER_DATA":
         case "SET_USER_DATA":
