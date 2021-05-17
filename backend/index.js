@@ -26,7 +26,7 @@ const connectToDatabase = () => {
         .catch(e => {
             console.log("Connection FAILED to Database: ", e);
         });
-}
+};
 
 const getExternalJSON = url => {
     try {
@@ -36,8 +36,8 @@ const getExternalJSON = url => {
         return {
             data: "Error. Please see the Administrator."
         };
-    }
-}
+    };
+};
 
 connectToDatabase();
 
