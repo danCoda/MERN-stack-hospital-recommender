@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
+
 import { addUserData, saveUserName, fetchIllnesses, saveUserIllness, saveUserPainLevel } from '../actions';
 
 class NewUserForm extends React.Component {
     componentDidMount() {
         this.props.fetchIllnesses();
-    }
+    };
 
     saveUserName () {
         // Saves to the database.
@@ -17,7 +18,7 @@ class NewUserForm extends React.Component {
     };
 
     renderIllnessList() {
-        return this.props.illnesses.map((data, i) => {
+        return this.props.illnesses.map(data => {
             return (
                 <tr key={data.illness.id}>
                     <td>
@@ -38,7 +39,7 @@ class NewUserForm extends React.Component {
 
     savePainLevel(level) {
         this.props.saveUserPainLevel(level);
-    }
+    };
 
     renderPainScale() {
         return (
@@ -65,16 +66,21 @@ class NewUserForm extends React.Component {
                 </div>
             </div>
         )
-    }
+    };
+
+    saveUser() {
+        const { userName: name, userIllness, userPainLevel: painLevel } = this.props;
+        this.props.addUserData({
+            name,
+            diagnosisId: userIllness.illness.id,
+            painLevel
+        });
+    };
 
     render() {
         if (this.props.userName && this.props.userIllness && this.props.userPainLevel !== null) {
             // We have all the needed user data. Save to database to trigger new view.
-            this.props.addUserData({
-                name: this.props.userName,
-                diagnosisId: this.props.userIllness.illness.id,
-                painLevel: this.props.userPainLevel
-            });
+            this.saveUser();
             return <div>Loading...</div>;
         };
         

@@ -1,6 +1,8 @@
 import React from 'react';
 
 const HospitalResults = props => {
+    const userPainLevel = props.userData.painLevel;
+
     const getHospitalWaitTime = (painLevel, hospital) => {
         return hospital.waitingList[painLevel].patientCount * hospital.waitingList[painLevel].averageProcessTime;
     };
@@ -16,9 +18,6 @@ const HospitalResults = props => {
         });    
     };
     
-    const userPainLevel = props.userData.painLevel;
-    sortHospitalByWaitingTime();
-
     const renderHospitalList = () => {
         return props.hospitals.map(h => {
             return (
@@ -34,6 +33,9 @@ const HospitalResults = props => {
         const illness = props.illnesses.find(ill => ill.illness.id === props.userData.diagnosisId).illness;
         return illness.name;
     }
+
+    sortHospitalByWaitingTime();
+
     return (
         <div className="custom-container container">
             <div className="card">

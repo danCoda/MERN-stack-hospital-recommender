@@ -3,16 +3,16 @@ import { combineReducers } from 'redux';
 const illnessReducer = (state = [], action) => {
     if (action.type === "FETCH_ILLNESSES") {
         return action.payload;
-    }
+    };
     return state;
-}
+};
 
 const hospitalsReducer = (state = [], action) => {
     if (action.type === "FETCH_HOSPITALS") {
         return action.payload;
-    }
+    };
     return state;
-}
+};
 
 const usersReducer = (state = [], action) => {
     switch (action.type) {
@@ -21,29 +21,29 @@ const usersReducer = (state = [], action) => {
             return action.payload;
         default:
             return state;
-    }
-}
+    };
+};
 
 const userIllnessReducer = (state = 0, action) => {
     if (action.type === "USER_ILLNESS") {
         return action.payload;
-    }
+    };
     return state;
-}
+};
 
 const userNameReducer = (state = null, action) => {
     if (action.type === "NEW_USER_NAME") {
         return action.payload;
-    }
+    };
     return state;
-}
+};
 
 const userPainLevelReducer = (state = null, action) => {
     if (action.type === "USER_PAIN_LEVEL") {
         return action.payload;
-    }
+    };
     return state;
-}
+};
 
 const newUserReducer = (state = null, action) => {
     switch (action.type) {
@@ -52,8 +52,8 @@ const newUserReducer = (state = null, action) => {
             return action.payload;
         default:
             return state;
-    }
-}
+    };
+};
 
 export default combineReducers({
     illnesses: illnessReducer,

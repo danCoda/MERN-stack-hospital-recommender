@@ -14,7 +14,7 @@ ReactDOM.render(
         <div className="container" id="company-name">
             <h1 
                 className="display-3 text-center"
-                onClick={() => window.location.reload()}
+                onClick={() => window.location.reload()} // Reload the website when the header is clicked.
             >
                 Hospital Finder
             </h1>

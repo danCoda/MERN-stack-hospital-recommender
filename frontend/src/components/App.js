@@ -15,7 +15,9 @@ class App extends React.Component {
 
     render() {
         if (!this.props.userData) {
+            // No user has been selected.
             if (this.props.users.length) {
+                // There are previous users.
                 return (
                     <div>
                         <NewUserForm />
@@ -23,22 +25,23 @@ class App extends React.Component {
                     </div>
                 );
             } else {
+                // No previous users.
                 return (
                     <div>
                         <h4>New Patient Form</h4>
                         <NewUserForm />
                     </div>
                 );
-            }
-        }
-
+            };
+        };
+        // A user has been selected.
         return (
             <div>
                 <HospitalResults userData={this.props.userData} illnesses={this.props.illnesses} hospitals={this.props.hospitals}/>
             </div>
         );    
-    }
-}
+    };
+};
 
 
 const mapStateToProps = state => {

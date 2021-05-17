@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+
 import { setUserData, deleteUser } from '../actions';
 
 class UsersList extends React.Component {
-    
     renderList() {
         return this.props.users.map(user => {
             return (
@@ -23,6 +23,7 @@ class UsersList extends React.Component {
     };
 
     render() {
+        // Shows a list of existing users.
         return (
             <div className="custom-container container" id="previous-users">
                 <div className="card">
@@ -38,7 +39,7 @@ class UsersList extends React.Component {
                 </div>
             </div>
         );
-    }
+    };
 };
 
 const mapStateToProps = state => {
@@ -46,7 +47,7 @@ const mapStateToProps = state => {
         users: state.users,
         setUserData, 
         deleteUser
-    }
-}
+    };
+};
 
 export default connect(mapStateToProps, { setUserData, deleteUser })(UsersList);
