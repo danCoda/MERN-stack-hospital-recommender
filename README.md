@@ -26,7 +26,7 @@ It's a tool for you to **find the hospitals with the shortest waiting times**, f
 
 1. The frontend requests data from the backend, which in turn requests data via an external API. This API provides data on Hospitals and Illnesses. 
 2. The User inputs their name, selects the illness they have and the level of pain they are experiencing. This data is communicated to the backend where it gets stored in the database.
-3. The app provides hospital recommendations based the hospitals' their waiting times. 
+3. The app provides hospital recommendations based the hospitals' waiting times. 
 4. The User is able to get back to the homepage, and can click their name under 'Previous Users' to get back to their hospital recommendations, or press the 'Delete' button to remove their record from the database.
 5. There is no 5, but if this was a real scenario, the User can look for the hospital and may find that the hospital does not actually exist, or that the waiting times were not based on real  data.
 
